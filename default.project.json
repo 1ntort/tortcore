@@ -1,0 +1,6 @@
+{
+	"name": "tortcore",
+	"tree": {
+		"$path": "src"
+	}
+}
