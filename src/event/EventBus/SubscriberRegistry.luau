@@ -10,17 +10,7 @@ type EventSubscription = EventType.EventSubscription
 
 --// TYPES \\--
 
-export type SubscriberRegistery = {
-	_: {
-		subscribers: { [string]: { EventSubscription } },
-	},
-	register: (SubscriberRegistery, string, EventSubscription) -> (),
-	unregister: (SubscriberRegistery, EventSubscription) -> (),
-	unregisterMatching: (SubscriberRegistery, (EventSubscription) -> boolean) -> (),
-	unregisterAll: (SubscriberRegistery) -> (),
-	subscribers: ((SubscriberRegistery) -> { [string]: { EventSubscription } })
-		& ((SubscriberRegistery, string) -> { EventSubscription }),
-}
+export type SubscriberRegistery = EventType.SubscriberRegistry
 
 --// DECLARATIONS \\--
 

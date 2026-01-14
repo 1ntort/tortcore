@@ -11,17 +11,7 @@ type EventSubscription = EventType.EventSubscription
 
 --// TYPES \\--
 
-export type PostResult = {
-	_: {
-		event: Event,
-		success: boolean,
-		errors: { [EventSubscription]: string },
-	},
-	event: (PostResult) -> Event,
-	successful: (PostResult) -> boolean,
-	errors: (PostResult) -> { [EventSubscription]: string },
-	throw: (PostResult) -> (),
-}
+export type PostResult = EventType.PostResult
 
 --// DECLARATIONS \\--
 

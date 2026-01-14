@@ -7,27 +7,15 @@ local Table = require("../utility/Table")
 local EventType = require("./EventType")
 local Bus = require("@self/Bus")
 local EventSubscription = require("@self/EventSubscription")
-local PostResult = require("@self/PostResult")
 
 type Event = EventType.Event
 type EventHandler = EventType.EventHandler
 type EventSubscription = EventType.EventSubscription
-type PostResult = PostResult.PostResult
+type PostResult = EventType.PostResult
 
 --// TYPES \\--
 
-export type EventBus = {
-	_: {
-		bus: Bus.Bus,
-		registerSubscription: (EventBus, Event, EventHandler) -> EventSubscription,
-	},
-	post: (EventBus, Event) -> PostResult,
-	shouldPost: (EventBus, Event) -> boolean,
-	subscribe: (EventBus, Event, EventHandler) -> EventSubscription,
-	subscriptions: (EventBus, Event) -> { EventSubscription },
-	unregisterHandler: (EventBus, EventSubscription) -> (),
-	close: (EventBus) -> (),
-}
+export type EventBus = EventType.EventBus
 
 --// DECLARATIONS \\--
 

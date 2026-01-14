@@ -10,26 +10,12 @@ local PostResult = require("./PostResult")
 
 type Event = EventType.Event
 type EventSubscription = EventType.EventSubscription
-type SubscriberRegistry = SubscriberRegistry.SubscriberRegistery
+type SubscriberRegistry = EventType.SubscriberRegistry
 type PostResult = PostResult.PostResult
 
 --// TYPES \\--
 
-export type Bus = {
-	_: {
-		registry: SubscriberRegistry,
-		eventCancelled: (Bus, Event) -> boolean,
-		shouldPost: (Bus, Event, EventSubscription) -> boolean,
-	},
-	post: (Bus, Event) -> PostResult,
-	register: (Bus, string, EventSubscription) -> (),
-	unregister: (Bus, EventSubscription) -> (),
-	unregisterMatching: (Bus, (EventSubscription) -> boolean) -> (),
-	unregisterAll: (Bus) -> (),
-	hasSubscribers: (Bus, string) -> boolean,
-	subscribers: (Bus) -> { [string]: { EventSubscription } },
-	handles: (Bus, string) -> { EventSubscription },
-}
+export type Bus = EventType.Bus
 
 --// DECLARATIONS \\--
 
