@@ -1,6 +1,6 @@
 {
 	"name": "tortcore",
 	"tree": {
-		"$path": "src"
+		"$path": "src/tortcore"
 	}
 }

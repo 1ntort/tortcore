@@ -32,26 +32,26 @@ end
 
 --// INSTANCE \\--
 
-function INSTANCE.post(self: EventBus, event: Event): PostResult
+function INSTANCE.post<T>(self: EventBus, event: T & Event): PostResult
 	return self._.bus:post(event)
 end
 
-function INSTANCE.shouldPost(self: EventBus, event: Event): boolean
+function INSTANCE.shouldPost<T>(self: EventBus, event: T & Event): boolean
 	return self._.bus:hasSubscribers(event.id())
 end
 
-function INSTANCE.subscribe(self: EventBus, event: Event, handler: EventHandler): EventSubscription
+function INSTANCE.subscribe<T>(self: EventBus, event: T & Event, handler: EventHandler): EventSubscription
 	return self._.registerSubscription(self, event, handler)
 end
 
-function INSTANCE._.registerSubscription(self: EventBus, event: Event, handler: EventHandler): EventSubscription
+function INSTANCE._.registerSubscription<T>(self: EventBus, event: T & Event, handler: EventHandler): EventSubscription
 	local subscription = EventSubscription.new(self, event:id(), handler)
 	self._.bus:register(event:id(), subscription)
 	
 	return subscription
 end
 
-function INSTANCE.subscriptions(self: EventBus, event: Event): { EventSubscription }
+function INSTANCE.subscriptions<T>(self: EventBus, event: T & Event): { EventSubscription }
 	return self._.bus:handles(event.id())
 end
 

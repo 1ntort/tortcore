@@ -3,7 +3,7 @@
 
 --// IMPORTS \\--
 
-local Table = require("../utility/Table")
+local Table = require("../../utility/Table")
 local TextType = require("../TextType")
 
 --// TYPES \\--

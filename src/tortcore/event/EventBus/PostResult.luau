@@ -24,7 +24,7 @@ local INSTANCE = { _ = {
 
 --// STATIC \\--
 
-function PostResult.new(event: Event, success: boolean, errors: { [EventSubscription]: string }?): PostResult
+function PostResult.new<T>(event: T & Event, success: boolean, errors: { [EventSubscription]: string }?): PostResult
 	local instance = Table.deepcopy(INSTANCE)
 	instance._.event = event
 	instance._.success = success
@@ -34,17 +34,17 @@ function PostResult.new(event: Event, success: boolean, errors: { [EventSubscrip
 	return instance
 end
 
-function PostResult.success(event: Event)
+function PostResult.success<T>(event: T & Event)
 	return PostResult.new(event, true)
 end
 
-function PostResult.failure(event: Event, errors: { [EventSubscription]: string })
+function PostResult.failure<T>(event: T & Event, errors: { [EventSubscription]: string })
 	PostResult.new(event, false, errors)
 end
 
 --// INSTANCE \\--
 
-function INSTANCE.event(self: PostResult): Event
+function INSTANCE.event<T>(self: PostResult): T & Event
 	return self._.event
 end
 

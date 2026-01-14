@@ -67,6 +67,7 @@ export type EventSubscription = {
 	invoke: (EventSubscription, Event) -> (),
 	id: (EventSubscription) -> string,
 	handler: (EventSubscription) -> EventHandler,
+	consumeCancelledEvents: (EventSubscription) -> boolean,
 }
 
 export type PostResult = {

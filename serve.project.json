@@ -10,7 +10,7 @@
         },
         "tests": {
           "$className": "Folder",
-          "$path": "test"
+          "$path": "src/test"
         }
       }
     }

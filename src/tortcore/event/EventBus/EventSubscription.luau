@@ -62,6 +62,10 @@ function INSTANCE.handler(self: EventSubscription): EventHandler
 	return self._.handler
 end
 
+function INSTANCE.consumeCancelledEvents(self: EventSubscription): boolean
+	return true
+end
+
 --// END \\--
 
 return EventSubscription

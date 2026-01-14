@@ -34,7 +34,7 @@ end
 
 --// INSTANCE \\--
 
-function INSTANCE._.eventCancelled(self: Bus, event: Event): boolean
+function INSTANCE._.eventCancelled<T>(self: Bus, event: T & Event): boolean
 	if event.attributes["cancellable"] == nil then return false end
 	if typeof(event.cancelled) ~= "function" then
 		error(`Event '{event:id()}' was found with the 'cancellable', but no 'cancelled' function.`)
@@ -42,12 +42,12 @@ function INSTANCE._.eventCancelled(self: Bus, event: Event): boolean
 	return event:cancelled() :: boolean
 end
 
-function INSTANCE._.shouldPost(self: Bus, event: Event, subscriber: EventSubscription): boolean
+function INSTANCE._.shouldPost<T>(self: Bus, event: T & Event, subscriber: EventSubscription): boolean
 	if (not subscriber:consumeCancelledEvents()) and self._.eventCancelled(self, event) then return false end
 	return true
 end
 
-function INSTANCE.post(self: Bus, event: Event): PostResult
+function INSTANCE.post<T>(self: Bus, event: T & Event): PostResult
 	local errors: { [EventSubscription]: string } = {}
 	for _, subscriber in self._.registry:subscribers(event:id()) do
 		if not self._.shouldPost(self, event, subscriber) then continue end
