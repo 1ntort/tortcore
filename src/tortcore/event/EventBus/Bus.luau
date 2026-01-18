@@ -60,7 +60,9 @@ function INSTANCE.post<T>(self: Bus, event: T & Event): PostResult
 	if #errors == 0 then
 		return PostResult.success(event)
 	else
-		return PostResult.failure(event, errors)
+		local result = PostResult.failure(event, errors)
+		result:throw()
+		return result
 	end
 end
 

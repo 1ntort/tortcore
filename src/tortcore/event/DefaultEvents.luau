@@ -33,7 +33,10 @@ function DefaultEvents.register(eventBus: EventBus)
 			if module:IsA("ModuleScript") then
 				local event: RawEvent = require(module)
 				if event and event.default then
-					DefaultEvents._.handle(eventBus, event)
+                    local success, result = pcall(DefaultEvents._.handle, eventBus, event)
+					if not success then
+                        warn(`Failed to add default event '{tostring(module.Name)}': {tostring(result)}`)
+					end
 				end
 			end
 		end

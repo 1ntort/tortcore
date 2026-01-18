@@ -38,8 +38,8 @@ function PostResult.success<T>(event: T & Event)
 	return PostResult.new(event, true)
 end
 
-function PostResult.failure<T>(event: T & Event, errors: { [EventSubscription]: string })
-	PostResult.new(event, false, errors)
+function PostResult.failure<T>(event: T & Event, errors: { [EventSubscription]: string }): PostResult
+	return PostResult.new(event, false, errors)
 end
 
 --// INSTANCE \\--
@@ -65,7 +65,7 @@ function INSTANCE.throw(self: PostResult)
 		current += 1
 		errors = errors .. `\n[{current}]: {message}`
 	end
-	error(`Errors occured while posting an event to its subscribers: {errors}`)
+	warn(`Errors occured while posting an event to its subscribers: {errors}`)
 end
 
 --// END \\--

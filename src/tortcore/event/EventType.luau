@@ -4,7 +4,7 @@
 
 export type Event = {
 	attributes: { [string]: true },
-	id: () -> string,
+	id: (Event) -> string,
 }
 export type EventHandler = (Event) -> ()
 export type EventInstance = {

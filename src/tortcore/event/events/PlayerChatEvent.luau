@@ -7,29 +7,25 @@ local Table = require("../../utility/Table")
 local EventType = require("../EventType")
 
 type Event = EventType.Event
-type PostResult = EventType.PostResult
 
 --// TYPES \\--
 
-export type PlayerJoinEvent = {
+export type PlayerChatEvent = {
 	_: {
 		cancelled: boolean,
 		player: Player
 	},
-	cancelled: ((PlayerJoinEvent) -> boolean)
-		& ((PlayerJoinEvent, boolean) -> ()),
-	player: (PlayerJoinEvent) -> Player
+	cancelled: ((PlayerChatEvent) -> boolean)
+		& ((PlayerChatEvent, boolean) -> ()),
+	player: (PlayerChatEvent) -> Player
 } & Event
 
 --// DECLARATIONS \\--
 
-local PlayerJoinEvent = {
+local PlayerChatEvent = {
 	_ = {},
 	id = game:GetService("HttpService"):GenerateGUID(false),
-	default = {
-		type = "RBXScriptSignal",
-		value = game:GetService("Players").PlayerAdded
-	}
+	default = false,
 }
 local INSTANCE = { _ = {
 	cancelled = false,
@@ -40,7 +36,7 @@ local INSTANCE = { _ = {
 
 --// STATIC \\--
 
-function PlayerJoinEvent.new(player: Player): PlayerJoinEvent
+function PlayerChatEvent.new(player: Player): PlayerChatEvent
 	local instance = Table.deepcopy(INSTANCE)
 	instance._.player = player
 	return instance
@@ -48,7 +44,7 @@ end
 
 --// INSTANCE \\--
 
-function INSTANCE.cancelled(self: PlayerJoinEvent, cancelled: boolean?): boolean?
+function INSTANCE.cancelled(self: PlayerChatEvent, cancelled: boolean?): boolean?
 	if cancelled == nil then
 		return self._.cancelled
 	end
@@ -56,16 +52,16 @@ function INSTANCE.cancelled(self: PlayerJoinEvent, cancelled: boolean?): boolean
 	return
 end
 
-function INSTANCE.player(self: PlayerJoinEvent): Player
+function INSTANCE.player(self: PlayerChatEvent): Player
 	return self._.player
 end
 
-function INSTANCE.id(self: PlayerJoinEvent): string
-	return PlayerJoinEvent.id
+function INSTANCE.id(self: PlayerChatEvent): string
+	return PlayerChatEvent.id
 end
 
 --// END \\--
 
-PlayerJoinEvent.INSTANCE = PlayerJoinEvent.new()
+PlayerChatEvent.INSTANCE = PlayerChatEvent.new()
 
-return PlayerJoinEvent
+return PlayerChatEvent

@@ -1,5 +1,7 @@
 {
   "name": "tortcore",
+  "servePort": 34872,
+  "servePlaceIds": [ 104979914117853 ],
   "tree": {
     "$className": "DataModel",
     "Workspace": {
@@ -10,10 +12,26 @@
         },
         "tests": {
           "$className": "Folder",
-          "$path": "src/test"
+          "server": {
+            "$className": "Actor",
+            "$path": "src/test/server",
+            "$ignoreUnknownInstances": false
+          }
         },
         "$ignoreUnknownInstances": false
       }
+    },
+
+    "StarterPlayer": {
+      "StarterCharacterScripts": {
+        "client": {
+          "$className": "Actor",
+          "$path": "src/test/client",
+          "$ignoreUnknownInstances": false
+        },
+        "$ignoreUnknownInstances": true
+      },
+      "$ignoreUnknownInstances": true
     }
   }
 }

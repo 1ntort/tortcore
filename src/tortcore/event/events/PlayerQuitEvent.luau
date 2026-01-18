@@ -11,24 +11,22 @@ type PostResult = EventType.PostResult
 
 --// TYPES \\--
 
-export type PlayerJoinEvent = {
+export type PlayerQuitEvent = {
 	_: {
 		cancelled: boolean,
 		player: Player
 	},
-	cancelled: ((PlayerJoinEvent) -> boolean)
-		& ((PlayerJoinEvent, boolean) -> ()),
-	player: (PlayerJoinEvent) -> Player
+	player: (PlayerQuitEvent) -> Player
 } & Event
 
 --// DECLARATIONS \\--
 
-local PlayerJoinEvent = {
+local PlayerQuitEvent = {
 	_ = {},
 	id = game:GetService("HttpService"):GenerateGUID(false),
 	default = {
 		type = "RBXScriptSignal",
-		value = game:GetService("Players").PlayerAdded
+		value = game:GetService("Players").PlayerRemoving
 	}
 }
 local INSTANCE = { _ = {
@@ -40,7 +38,7 @@ local INSTANCE = { _ = {
 
 --// STATIC \\--
 
-function PlayerJoinEvent.new(player: Player): PlayerJoinEvent
+function PlayerQuitEvent.new(player: Player): PlayerQuitEvent
 	local instance = Table.deepcopy(INSTANCE)
 	instance._.player = player
 	return instance
@@ -48,24 +46,16 @@ end
 
 --// INSTANCE \\--
 
-function INSTANCE.cancelled(self: PlayerJoinEvent, cancelled: boolean?): boolean?
-	if cancelled == nil then
-		return self._.cancelled
-	end
-	self._.cancelled = cancelled
-	return
-end
-
-function INSTANCE.player(self: PlayerJoinEvent): Player
+function INSTANCE.player(self: PlayerQuitEvent): Player
 	return self._.player
 end
 
-function INSTANCE.id(self: PlayerJoinEvent): string
-	return PlayerJoinEvent.id
+function INSTANCE.id(self: PlayerQuitEvent): string
+	return PlayerQuitEvent.id
 end
 
 --// END \\--
 
-PlayerJoinEvent.INSTANCE = PlayerJoinEvent.new()
+PlayerQuitEvent.INSTANCE = PlayerQuitEvent.new()
 
-return PlayerJoinEvent
+return PlayerQuitEvent
