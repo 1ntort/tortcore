@@ -11,8 +11,7 @@ local Mark = require(text.format.Mark)
 local Stroke = require(text.format.Stroke)
 
 local textChatService = game:GetService("TextChatService")
-local channel: TextChannel =
-	textChatService:WaitForChild("TextChannels"):WaitForChild("RBXGeneral")
+local channel: TextChannel = textChatService:WaitForChild("TextChannels"):WaitForChild("RBXGeneral")
 
 -- Test 1: Decorations
 do
@@ -24,7 +23,6 @@ do
 			:decorate(Decoration.ITALIC, Decoration.STRIKETHROUGH)
 	)
 
-	print(component:tostring())
 	channel:DisplaySystemMessage(component:tostring())
 end
 
@@ -45,7 +43,6 @@ do
 			)
 	)
 
-	print(component:tostring())
 	channel:DisplaySystemMessage(component:tostring())
 end
 
@@ -65,7 +62,6 @@ do
 			)
 	)
 
-	print(component:tostring())
 	channel:DisplaySystemMessage(component:tostring())
 end
 
@@ -80,7 +76,6 @@ do
 			:sizing("fixed")
 		)
 
-	print(component:tostring())
 	channel:DisplaySystemMessage(component:tostring())
 end
 
@@ -107,6 +102,5 @@ do
 			:sizing("fixed")
 		)
 
-	print(component:tostring())
 	channel:DisplaySystemMessage(component:tostring())
 end
