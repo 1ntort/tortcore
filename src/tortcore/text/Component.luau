@@ -37,15 +37,15 @@ function Component.new(text: string): Component
 end
 
 function Component.empty(): Component
-	return Component.new("")
-end
-
-function Component.newline(): Component
-	return Component.new("<br/>")
+	return Component._.EMPTY
 end
 
 function Component.space(): Component
-	return Component.new(" ")
+	return Component._.SPACE
+end
+
+function Component.newline(): Component
+	return Component._.NEWLINE
 end
 
 function Component.fromChildren(...: Component): Component
@@ -140,5 +140,9 @@ function INSTANCE.tostring(self: Component): string
 end
 
 --// END \\--
+
+Component._.EMPTY = Component.new("")
+Component._.SPACE = Component.new(" ")
+Component._.NEWLINE = Component.new("<br/>")
 
 return Component

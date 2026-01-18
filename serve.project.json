@@ -11,7 +11,8 @@
         "tests": {
           "$className": "Folder",
           "$path": "src/test"
-        }
+        },
+        "$ignoreUnknownInstances": false
       }
     }
   }

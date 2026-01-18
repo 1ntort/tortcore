@@ -22,7 +22,14 @@ export type PlayerJoinEvent = {
 
 --// DECLARATIONS \\--
 
-local PlayerJoinEvent = { _ = {} }
+local PlayerJoinEvent = {
+	_ = {},
+	id = "PlayerJoinEvent",
+	default = {
+		type = "RBXScriptSignal",
+		value = game:GetService("Players").PlayerAdded
+	}
+}
 local INSTANCE = { _ = {
 	cancelled = false,
 	player = nil,
@@ -53,7 +60,7 @@ function INSTANCE.player(self: PlayerJoinEvent): Player
 end
 
 function INSTANCE.id(self: PlayerJoinEvent): string
-	return "PlayerJoinEvent"
+	return PlayerJoinEvent.id
 end
 
 --// END \\--
